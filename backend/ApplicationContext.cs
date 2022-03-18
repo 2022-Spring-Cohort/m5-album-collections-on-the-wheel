@@ -11,6 +11,8 @@ namespace template_csharp_album_collections
 
        
         //Add DBSets here
+        public DbSet<Artist> Artists { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
