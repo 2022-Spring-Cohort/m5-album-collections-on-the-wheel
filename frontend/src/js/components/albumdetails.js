@@ -10,23 +10,16 @@ export default{
 
 function GetAlbum(id){
     console.log('test',id);
-    requestHandler.allRequest(ALBUM_CONTROLLER + id, Process);
-    
-    // fetch(AlbumAPIURL + id)//need to reference ALBUM_CONTROLLER after we pushed SONG/REVIEW
-    // .then(response => response.json())
-    // .then(data => process(data))
-    // .catch(err => console.log(err))   
+    requestHandler.allRequest(ALBUM_CONTROLLER + id, Process); 
 }
 
 function Edit(album){
-    console.log("works");
     contentDiv.innerHTML = `
 
     <h2>Album Detail </h2>
     <div id="artist-container">
     <input type="hidden" value="${album.id}" id="EditId" />
-    <select id="edit-select">
-    </select>
+    
 
     <section class="form">
         <input id="EditTitle" placeholder="Title" value="${album.title}" />
@@ -34,10 +27,15 @@ function Edit(album){
         <input id="EditRecordLabel" placeholder="Record Label" value="${album.recordLabel}"/>
         <button id="${album.id}" class="UpdateButton" >Update</button>
     </section>
+    <div>
+        Choose Artist:
+    </div>
+    <select id="edit-select">
+    </select>
     </div">
     `;
     let select = document.getElementById('edit-select');
-    populateSelect.PopulateArtists(select);
+    populateSelect.PopulateArtists(select,album.artistId);
 
     let UpdateButton = document.getElementsByClassName("UpdateButton")[0];
 
@@ -62,7 +60,7 @@ function Edit(album){
 
 // <img class="album-image" src=${album.image} />
 function Process(album){
-    console.log(album);
+
     contentDiv.innerHTML = `
         <div class="parent">
             <div class="album-cover">

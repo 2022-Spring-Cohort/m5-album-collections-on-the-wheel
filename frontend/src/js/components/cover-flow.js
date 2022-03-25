@@ -12,8 +12,9 @@ export class CoverFlow extends HTMLElement {
         this.style.perspective = "600px";
         this.style.height = "100%";
         this.style.width = "100%";
-        this.style.marginTop = "15vh";
+        this.style.marginTop = "25%";
         this.style.display = "block";
+        
         
         this.albums = Array.from(this.getElementsByClassName('album'));
         for(let i = 0; i < this.albums.length; i++){
@@ -28,7 +29,7 @@ export class CoverFlow extends HTMLElement {
             albumTarget.style.position = "absolute";
             albumTarget.style.top = 0;
             albumTarget.style.left = 0;
-            albumTarget.style.width = "50%";
+            albumTarget.style.width = "100%";
             albumTarget.style.height = "100%";
 
             album.style.transformStyle = 'preserve-3d';
@@ -36,11 +37,15 @@ export class CoverFlow extends HTMLElement {
             album.style.position = "absolute";
             album.style.top = "50%";
             album.style.left = "50%";
-            album.style.width = "15vw";
-            album.style.height = "15vw";
+            album.style.width = "20vw";
+            album.style.height = "20vw";
             album.style.marginLeft = "-90px";
             album.style.marginTop = "-90px";
             
+            // this.addEventListener('click', ()=>{
+            //     albumTarget.click();
+            // });
+
             albumTarget.addEventListener('click', this.flowToTarget.bind(this),false);
             this.index = Math.floor( this.albums.length / 2 );
         }
@@ -63,7 +68,7 @@ export class CoverFlow extends HTMLElement {
     }
 
     flowToTarget(clickEvent){
-        console.log('flowToTarget',clickEvent,this);
+        console.log('click');
         let indexTarget = this.index - clickEvent.target.getAttribute("data-id");
         let flow = null;
         if (indexTarget < 0)
@@ -90,17 +95,17 @@ export class CoverFlow extends HTMLElement {
             let index = this.index;
             let detailControl = album.getElementsByClassName('detail-control')[0];
             let deleteControl = album.getElementsByClassName('delete-control')[0];
-            console.log('detail-control',detailControl,album,'album');
+            let albumTarget = album.getElementsByClassName('album-target')[0];
+            console.log('in flow render body',detailControl,deleteControl);
             if( i < index ) {
-                console.log(this.albums[i].firstElementChild);
+
                 album.style.transform = `translateX(-${(this.offset * (index - i ))}%) rotateY(${this.rotation}deg)`;
                 album.style.zIndex = this.baseZIndex + i;
-
                 deleteControl.style.display = "none";
 
-                detailControl.classList.add('fade');
-                // detailControl.style.color = "rgba(0,0,0,0)";
-                // detailControl.style.textShadow = "0 0 0 transparent";
+                //detailControl.classList.add('fade');
+                detailControl.style.color = "rgba(0,0,0,0)";
+                //detailControl.style.textShadow = "0 0 0 transparent";
                 // detailControl.style["-webkit-test-stroke-width"] = "0px";
                 // detailControl.style["-webkit-test-stroke-color"] = "transparent";
             } 
@@ -109,20 +114,22 @@ export class CoverFlow extends HTMLElement {
                 album.style.zIndex = this.maxZIndex;  
                 deleteControl.style.display = "initial";
 
-                detailControl.classList.remove('fade');
-                //detailControl.style.color = "rgba(0,0,0,1)";
+                //detailControl.classList.remove('fade');
+                detailControl.style.color = "rgba(0,0,0,1)";
                 //detailControl.style.textShadow = "1px 20px 5px black";
-                //detailControl.style["-webkit-test-stroke-width"] = "2px";
-                //detailControl.style["-webkit-test-stroke-color"] = "black";
+                // detailControl.style["-webkit-test-stroke-width"] = "2px";
+                // detailControl.style["-webkit-test-stroke-color"] = "black";
             } 
             else if( i > index ) {
                 album.style.transform = `translateX(${(this.offset * (i - index ))}%) rotateY( -${this.rotation}deg)`;
                 album.style.zIndex = this.baseZIndex + ( this.albums.length - i  );
                 deleteControl.style.display = "none";
 
-                detailControl.classList.add('fade');
-                //detailControl.style["-webkit-test-stroke-width"] = "0px";
-                //detailControl.style["-webkit-test-stroke-color"] = "transparent";
+                //detailControl.classList.add('fade');
+                detailControl.style.color = "rgba(0,0,0,0)";
+                //detailControl.style.textShadow = "0 0 0 transparent";
+                // detailControl.style["-webkit-test-stroke-width"] = "0px";
+                // detailControl.style["-webkit-test-stroke-color"] = "transparent";
             }         
         }
         

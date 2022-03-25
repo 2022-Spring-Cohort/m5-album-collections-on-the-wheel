@@ -457,14 +457,14 @@ h2 {
 }
 
 .detail-control{
-    color:grey;
+    /* color:grey; */
     font-weight: bolder;
     font-size: 2vw;
     /* text-shadow: 1px 10px 5px rgba(0,0,0,1.0); */
     position:absolute;
-    top:100%;
+    top: 125%;
     left: 0;
-    width: 45vw;
+    width: 60vw;
     margin-left: -100%;
     height: auto;
     text-align: center;
@@ -479,10 +479,10 @@ h2 {
     /* -webkit-text-stroke: black 2px; */
 }
 
-.fade{
+/* .fade{
     color: rgba(0,0,0,0);
     text-shadow: '1px 20px 5px rgba(0,0,0,0.0)';
-}
+} */
 
 .delete-control{
     position:absolute;
@@ -518,13 +518,21 @@ h2 {
 }
 
 #create-control{
-    max-width:24vw;
-    position:absolute;
-    left:100%;
-    margin-left:-50%;
-    top:50%;
-    background-color:black;
-    border-radius: 50%;
+    font-size: 30pt;
+    position: absolute;
+    padding-top: 0.25em;
+    margin-top: calc(-25vw/2);
+    margin-left: auto;
+    margin-right: auto;
+    left: -1.75em;
+    right: 0;
+    text-align: center;
+
+    /* left:50%;
+    margin-left:1em; */
+    color:black;
+    background-color: rgba(0,0,0,0.0);
+    border:0;
 }
 
 .links{

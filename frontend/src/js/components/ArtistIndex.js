@@ -78,13 +78,13 @@ function SetupEventListeners(){
 
         artistItem.addEventListener('click',function(){            
             Artist.GetArtist(artistId);
-            console.log(artistId);
+
         });
 
         if (deleteArtistBtn.style.opacity === 1) {
             deleteArtistBtn.addEventListener('click',function(){
                 DeleteArtist(artistId);
-                console.log(artistId);
+
             });
         }
         
@@ -135,8 +135,6 @@ function AddArtist(){
             Bio: artistBio,
             HeroImage: artistImage
         }
-
-        console.log(newArtist);
 
         AllRequest.allRequest(ARTIST_CONTROLLER,Index,"POST",newArtist);
 

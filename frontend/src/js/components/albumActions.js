@@ -7,6 +7,8 @@ import albumdetails from "./albumdetails";
 
 import { CoverFlow } from "./cover-flow";
 
+import populateSelect from "./populate-select";
+
 export default{
     GetAlbums
 }
@@ -26,12 +28,16 @@ function Process(albums){
 
     contentDiv.innerHTML = `
         <div class="flow-container">
+        
+
             <cover-flow>
+            
                 ${albums.map(album => {
                     return `
                         <div class="album" data-cover=${album.image}>
                             <div class="album-target" >
                             </div>
+                            
                             <div class="delete-control">
                                 <img src="./static/delete-icon.svg" />
                             </div>
@@ -41,18 +47,18 @@ function Process(albums){
                             </div>
                         </div> 
                 `;
-                }).join('')}      
+                }).join('')}    
+                
             </cover-flow>
-            <div id="create-control">
-                <img id="AddArtistBtn" src="https://th.bing.com/th/id/R.4322fbefdf38880b4deaa6194d2cf766?rik=Ur7CikGkX7MuSA&riu=http%3a%2f%2fwww.langlo.no%2fsite%2ficons%2flanglo-symboler-21.png&ehk=xEHgkecbFrZGB80ai4k35nN7zcJcqDrQBkkh94zaLZI%3d&risl=&pid=ImgRaw&r=0"> 
-            </div>
+            <button id="create-control"> + </button>  
+            
         </div>
     `;
     addEventListeners();
 }
 
-function CreateAlbum(artists){
-    console.log("works");
+function CreateAlbum(){
+
     contentDiv.innerHTML = `
 
     <h2>Create Album</h2>
@@ -60,24 +66,23 @@ function CreateAlbum(artists){
     <section class="form">
         <input id="CreateTitle" placeholder="Title" />
 
-        <select>
-            <option selected disabled>---SELECT ARTIST---</option>
-            ${artists.map(artist=>{
-                return `
-                    <option value="${artist.id}">${artist.name}</option>
-                `
-            }).join('')}
-        </select>
+        
 
         <input id="CreateArtistId" placeholder="Artist Id" />
         <input id="CreateImage" placeholder="ImageUrl" />
         <input id="CreaterecordLabel" placeholder="Record Label" />
 
         <button id="CreateButton" class="CreateButton" >Add Album</button>
-    </section>
+        </section>
+        <select id="create-select">
+            <option selected disabled>---SELECT ARTIST---</option>
+        </select>
     </div>
     
     `;
+    let select = document.getElementById('create-select');
+    populateSelect.PopulateArtists(select);
+
     let CreateButton = document.getElementsByClassName("CreateButton")[0];
 
     CreateButton.addEventListener('click', function(){
@@ -98,27 +103,28 @@ function CreateAlbum(artists){
 }
 
 function addEventListeners(){
-    
+    console.log('adding event listeners to album controls')
     let albumDetailControls = Array.from(document.getElementsByClassName("detail-control"));
-    console.log(albumDetailControls);
+
 
      let createAlbum = document.getElementById("create-control");    
 
      createAlbum.addEventListener('click',()=>{
-         console.log('clicked CREATE album.');
-         requestHandler.allRequest(ARTIST_CONTROLLER,CreateAlbum)
+
+         requestHandler.allRequest(ARTIST_CONTROLLER,CreateAlbum);
         });
 
         albumDetailControls.forEach(detailControl => {
-        console.log('iterating albumItems',detailControl);
+
         detailControl.addEventListener('click', function(){
-                GetAlbums(detailControl.id);
+                albumdetails.GetAlbum(detailControl.id);
             });
 
-        console.log(detailControl,detailControl.previousElementSibling);
+
         let deleteButton = detailControl.previousElementSibling;
         deleteButton.addEventListener('click', function(){
             DeleteAlbum(detailControl.id);
         });
     });
+    console.log('event listeners added');
 }
