@@ -19,9 +19,9 @@ namespace template_csharp_album_collections.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Review> Get()
+        public IEnumerable<Album> Get()
         {
-            return _context.Reviews.ToList();
+            return _context.Albums.ToList();
 
         }
 
@@ -34,19 +34,19 @@ namespace template_csharp_album_collections.Controllers
 
 
         [HttpPost]
-        public Album Post(Album album)
+        public IEnumerable<Album> Post(Album album)
         {
             try
             {
                 _context.Albums.Add(album);
                 _context.SaveChanges();
 
-                return album;
+                return _context.Albums.ToList();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-             
-              return new Album();
+
+                return _context.Albums.ToList();
             }
 
         }
@@ -54,15 +54,22 @@ namespace template_csharp_album_collections.Controllers
         [HttpPut]
         public Album Put(Album album)
         {
+            //Have to do this otherwise it tries to stick null into Songs and Reviews
+            //Had an issue where it was breaking the relationships with artist and album
+            Album albumToUpdate = _context.Albums.Find(album.Id);
+            albumToUpdate.Title = album.Title;
+            albumToUpdate.RecordLabel = album.RecordLabel;
+            albumToUpdate.Image = album.Image;
+            albumToUpdate.ArtistId = album.ArtistId;
             try
             {
-                _context.Update(album);
+                _context.Albums.Update(albumToUpdate);
                 _context.SaveChanges();
-                return album;
+                return _context.Albums.Find(album.Id);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new Album();
+                return _context.Albums.Find(album.Id);
             }
         }
 

@@ -1,0 +1,24 @@
+{
+  "name": "m5-album-collections-on-the-wheel",
+  "version": "1.0.0",
+  "description": "Our super hip ironic friend needs an easy way to curate soundscapes for the Italian scooter/coffee hybrid co-op startup at which they volunteer (they also fix old polaroid cameras).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2022-Spring-Cohort/m5-album-collections-on-the-wheel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2022-Spring-Cohort/m5-album-collections-on-the-wheel/issues"
+  },
+  "homepage": "https://github.com/2022-Spring-Cohort/m5-album-collections-on-the-wheel#readme",
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
+}

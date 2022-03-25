@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "485f2aff-47d5-4f09-8e5e-b75060ad7c82": {
+      "ProjectGuid": "485f2aff-47d5-4f09-8e5e-b75060ad7c82",
+      "DisplayName": "template-csharp-album-collections",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

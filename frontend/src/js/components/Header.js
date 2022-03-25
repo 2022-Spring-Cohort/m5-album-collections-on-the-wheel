@@ -1,4 +1,7 @@
 import { GetArtists } from "./ArtistIndex";
+import albumActions from "./albumActions"
+
+
 
 const contentDiv = document.getElementById("app");
 
@@ -10,10 +13,11 @@ export default {
 
 function SetupNavBar(){
     return `
-        <h1 class = "header">Spring 2022 C# Music</h1>
+        <div class="header"></div>
+        
         <ul>
-            <li id='navArtist' class = "nav1">Artist</li>
-            <li id='navAlbums' class = "nav2">Albums</li>
+            <li id='navArtist'>Artist</li>
+            <li id='navAlbums'>Albums</li>
         </ul>
         
     `;
@@ -23,10 +27,26 @@ function SetupNavBar(){
 function SetupEventListeners(){
     let navArtist = document.getElementById('navArtist');
     let navAlbums = document.getElementById('navAlbums');
+
+    let clickMark = undefined;
+    
     navAlbums.addEventListener('click', function(){
-        //contentDiv.innerHTML = 'h';
+        clickMark = "artist";
+        albumActions.GetAlbums(); 
+        if (clickMark != "album") {
+            navAlbums.style.borderBottom = "2px solid black"; 
+            navAlbums.style.width = "max-content";
+            navArtist.style.borderBottom = "none"; 
+        }   
     });
     navArtist.addEventListener('click', function(){   
-        GetArtists();
+        clickMark = "album";
+        GetArtists();   
+        if (clickMark != "artist") {
+            navArtist.style.borderBottom = "2px solid black"; 
+            navArtist.style.width = "max-content";
+            navAlbums.style.borderBottom = "none"; 
+        }    
     });
+
 }

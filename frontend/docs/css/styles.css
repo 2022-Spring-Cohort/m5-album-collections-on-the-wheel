@@ -1,32 +1,399 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
 body {
-    background-color: rgb(109, 177, 109);
+    background-color: #f8f8f8;
+    color:black;
+    font-family: 'Prompt', sans-serif;
+    height:100vh;
+    width:100vw;
+    display:grid;
+    grid-template-columns: 16% 84%;
+    grid-template-rows: 90% 10%;
+    grid-template-areas: 
+    "nav main"
+    "nav footer";
 }
 
-.header{
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-    padding: 11px;
-    margin: -16px;
+header{
+    grid-area: nav;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:6vh;
+    border-right:.8px solid #cdcdcd;
+    min-width: 120px;
 }
 
-.nav1{
-    position: absolute;
-    right: 150px;
-    bottom:870px;
-    color: rgb(245, 245, 245);
-    padding: 1px 25px;
-    font-size: 26px;
+#navbar {
+    height:100%;
+    display:flex;
+    flex-direction: column;
+
+}
+
+.header {
+    margin-bottom:-100%;
+    width:4rem;
+    height:4rem;
+    background-image: url('./record1.png');
+    background-size: cover;
+    animation:spinningLogo 6s infinite linear;
+}
+
+#navbar ul{
+    list-style-type: none;
+    margin-top:44vh;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#navbar li{
+    padding-top:2rem;
+    cursor:default;
+}
+
+
+main {
+    grid-area: main;
+    min-width: 700px;
+    
+}
+
+#app {
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    grid-area: footer;
+  
+}
+
+h2 {
+    align-self: flex-start;
+    margin-top:4rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
     text-align: center;
-    text-decoration: none;
+    transform: translateX(-50%);
 }
 
-.nav2{
-    position: absolute;
-    right: 290px;
-    bottom:870px;
-    color: rgb(255, 255, 255);
-    padding: 1px 25px;
-    font-size: 26px;
-    text-align: center;
-    text-decoration: none;
+.form input{
+    outline: none;
+    border:none;
+    background-color: #f8f8f8;
+    color:black;
+    border-bottom:2px solid black;
+
+    margin-top:3rem;
+    width:200px;
+
+
 }
+
+#saveArtistBtn, #saveUpdateArtistBtn,.UpdateButton,.CreateButton {
+    outline: none;
+    margin-top:3.6rem;
+    border-radius:100px;
+    width:100px;
+    height:30px;
+    border:none;
+    background-color: black;
+    color:white;
+}
+
+.artistItem img {
+    width:auto;
+    height: 200px;
+    /* object-position: 50%; */
+}
+
+.artistIndex {
+    height:100%;
+ 
+    /* transform:translateY(-10%); */
+}
+
+.artistIndex>div {
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 250px;
+    row-gap: 1rem;
+    column-gap: 4rem;
+    padding:2rem 3rem;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.artistItem {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.artistItem div{
+    align-self: center;
+    justify-self: center;
+
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.52);
+    overflow:hidden;
+    width:180px;
+    height:180px;
+    border-radius:100% 100% 100% 100% / 100% 100% 100% 100%;
+    
+}
+
+.singleArtist {
+    display:flex;
+    flex-direction:column;
+    /* justify-content is for aligning items on the main axis */
+    align-items:center;
+}
+
+.artistItem>li {
+    list-style-type: none;
+    margin-top:.7rem;
+}
+
+
+.deleteArtistBtn {
+    opacity:0;
+    margin-bottom: .3rem;
+    align-self: flex-end;
+}
+
+
+
+.artistItem img:hover,.deleteArtistBtn {
+    cursor:pointer;
+    
+}
+
+.artistItem div:hover{
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.52);
+}
+
+
+
+#AddArtistBtn {
+    width:auto;
+    height: 180px;
+}
+
+
+.addArtistSign {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+} 
+
+.addArtistSign p {
+    margin-bottom:0;
+}
+.addArtistSign>span{
+    opacity:0;
+
+}
+
+.addArtist:hover {
+    cursor:pointer;
+}
+
+.artistDetail {
+    display:flex;
+    flex-direction:column;
+    height: 100%;
+    width:100%;
+
+}
+
+.artistDetailTop {
+    width:100%;
+    height:40%;
+    position:relative;
+    background-position: top right;
+    box-shadow: 0px 2px 4px 0px rgba(189,189,189,1);
+    
+    
+}
+
+.artistDetailTop::before{
+    content:' ';
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: #deddde4a;
+}
+
+
+.artistDetailTop>div{
+    width:100%;
+    position:absolute;
+    display: grid;
+    grid-template-columns: 95% 5%;
+    grid-template-rows: 1fr;
+    justify-content: flex-start;
+    align-items: baseline;
+    bottom:.1rem;
+}
+
+.artistDetailTop span{
+    margin-left: 2rem;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+#updateArtistBtn{ 
+    justify-self: flex-end;
+    margin-left:40%;
+    margin-right:2rem;
+    height:1.3rem;
+    width:1.3rem;
+    background-image: url('https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png');
+    background-size:contain;
+    border:none;
+    background-color: transparent;
+
+}
+
+#updateArtistBtn:hover {
+    cursor: pointer;
+}
+
+
+
+.artistDetailBtm {
+    height:60%;
+    display: flex;
+    flex-direction: row;
+    padding-top:1rem;
+}
+
+.artistDetailBtmL {
+    padding-left:1rem;
+    width:35%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.artistDetailBtmL>p{
+    margin:.8rem 0 0 0;
+    padding-bottom: .8rem;
+    border-bottom: 1px solid #afadad;
+    width:80%;
+    letter-spacing: -.6px;
+}
+
+.artistDetailBtmL>p:first-child{
+    color:#a8a6a6;
+}
+
+.artistDetailBtmL>p:last-child{
+    border:none;
+}
+
+.artistDetailBtmR {
+    width:65%;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows:50% 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.artistDetailBtmR>div {
+    width:90%;
+    height:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  
+    
+}
+
+.artistDetailBtmR>div>div {
+    position:relative;
+    height:80%;
+    width:80%;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.artistDetailBtmR>div>div::before{
+    content:' ';
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: #eddabf33;
+}
+
+.artistDetailBtmR img {
+    width:110%;
+    height:auto;
+}
+
+.artistDetailBtmR>div>p{
+    font-size: .85rem;
+    margin-top:5px;
+}
+
+.artistDetailBtmR>div>p:hover {
+    border-bottom:1.4px solid #686464;
+    cursor:default;
+}
+
+@keyframes spinningLogo {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+
+@media only screen and (max-width: 860px) {
+    .artistIndex>div {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 220px;
+        row-gap: 1rem;
+        column-gap: 3rem;
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .artistDetailBtmR {
+        grid-template-columns: repeat(5,1fr);
+        grid-template-rows:50% 50%;
+
+    }
+  }
+
