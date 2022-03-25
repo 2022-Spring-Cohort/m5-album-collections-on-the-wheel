@@ -13,7 +13,7 @@ export default() => {
 
 
 function Setup(){
-footer.innerHTML = Footer.SetupFooter();
+// footer.innerHTML = Footer.SetupFooter();
 navbar.innerHTML = Header.SetupNavBar()
 Header.SetupEventListeners();
 }

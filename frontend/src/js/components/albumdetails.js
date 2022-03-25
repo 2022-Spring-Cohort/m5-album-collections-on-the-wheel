@@ -54,18 +54,46 @@ function Edit(Album){
 }
 
 
-
+// <img class="album-image" src=${album.image} />
 function Process(album){
     console.log(album);
     contentDiv.innerHTML = `
-        ${album.title}
-        <ul>
-            <li>Artist: ${album.artist.name}</li>
-            <li>Description: ${album.recordLabel}</li>
-            <li>Image: ${album.image}</li>
-            
-        </ul>
-        <button id=${album.id} class="editButton">Edit</button>
+        <div class="parent">
+            <div class="album-cover">
+                <div class="image-wrapper">
+                <img class="album-image" src=${album.image} />  
+                </div>
+            </div>
+            <div class="album-details">
+                <h2>${album.artist.name}</h3>
+                <h1 class="test">${album.title}</h1>
+                <h3>${album.recordLabel}</h3>
+                <button id=${album.id} class="editButton">Edit</button>
+            </div>
+            <div class="album-songs">
+                <h3>Tracks</h3>
+                <ul class="song-list">  
+                    ${album.songs.map(song => {
+                        return `
+                            <li>${song.title}</li>
+                            `
+                           
+                    }).join('')} 
+                </ul>
+            </div>
+            <div class="album-reviews">
+                <h3>Reviews</h3>
+                ${album.reviews.map(review => {
+                    return `
+                        <div class="review">
+                            <h2> ${review.reviewerName}</h2>
+                            <p>${review.content}</p> 
+                        </div>
+                    `;
+                })}
+            </div>        
+        </div>
+        
     `;
     addEventListeners();
 }

@@ -4,6 +4,8 @@ import { ALBUM_CONTROLLER } from "../constants";
 
 import albumdetails from "./albumdetails";
 
+import { CoverFlow } from "./cover-flow";
+
 export default{
     GetAlbums
 }
@@ -26,15 +28,31 @@ function DeleteAlbum(id){
 function Process(albums){
     //console.log(albums);
     contentDiv.innerHTML = `
-        <button id="createAlbum">Add Album</button>
-        <ul>
-            ${albums.map(album => {
-                return `
-                <li id=${album.id} class="album">${album.title} <button class="deleteAlbum">Delete</button></li>
-                `
-            }).join('')}
-        </ul>
+        <div class="flow-container">
+            <cover-flow>
+                ${albums.map(album => {
+                    return `
+                        <div class="album" data-cover=${album.image}>
+                            <div class="album-target" >
+                            
+                            </div>
+                            <div class="delete-control">
+                                <img src="./static/delete-icon.svg" />
+                            </div>
+                            <div class="detail-control" id=${album.id} ">
+                                <div>${album.artist.name}</div>
+                                <div>${album.title}</div>
+                            </div>
+                        </div> 
+                `;
+                }).join('')}      
+            </cover-flow>
+        </div>
     `;
+            //<div data-cover="./static/add-icon.svg" id="create-control"></div>
+
+    //<button id="create-control">Add Album</button>
+    //<button class="deleteAlbum">Delete</button>
     addEventListeners();
 }
 
@@ -75,23 +93,23 @@ function CreateAlbum(){
 
 function addEventListeners(){
     
-    let albumItems = Array.from(document.getElementsByClassName("album"));
-    console.log(albumItems);
+    let albumDetailControls = Array.from(document.getElementsByClassName("detail-control"));
+    console.log(albumDetailControls);
 
-     let createAlbum = document.getElementById("createAlbum");    
+     //let createAlbum = document.getElementById("create-control");    
 
-     createAlbum.addEventListener('click',CreateAlbum)
+     //createAlbum.addEventListener('click',CreateAlbum)
     
-    albumItems.forEach(albumItem => {
-        console.log('iterating albumItems',albumItem);
-        albumItem.addEventListener('click', function(){
-                albumdetails.GetAlbum(albumItem.id);
+    albumDetailControls.forEach(detailControl => {
+        console.log('iterating albumItems',detailControl);
+        detailControl.firstElementChild.addEventListener('click', function(){
+                albumdetails.GetAlbum(detailControl.id);
             });
         
-        let deleteButton = albumItem.getElementsByClassName('deleteAlbum')[0];
-        deleteButton.addEventListener('click', function(){
-            DeleteAlbum(albumItem.id);
-        });
+        // let deleteButton = albumItem.getElementsByClassName('delete-control')[0];
+        // deleteButton.addEventListener('click', function(){
+        //     DeleteAlbum(albumItem.id);
+        // });
         
     });
 }

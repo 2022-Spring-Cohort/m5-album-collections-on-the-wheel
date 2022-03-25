@@ -13,7 +13,7 @@ function allRequest(location, callback, method = "GET", body=null){
             "Content-Type": "application/json"
         }
     }
-
+    console.log(location,fetchOptions);
     fetch(location, fetchOptions)
     .then(response => response.json())
     .then(data => {
