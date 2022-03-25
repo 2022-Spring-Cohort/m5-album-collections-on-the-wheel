@@ -189,6 +189,13 @@ cover-flow{
     position: absolute;
     bottom: -102%;
     transform:scaleY(-1);
+    .Links{
+        display: flex;
+        columns: row;
+        list-style: none;
+        text-decoration: none;
+        
+    }
 
     mask-image: linear-gradient(transparent,rgba(0,0,0,0.3), black);
     -webkit-mask-image: linear-gradient(transparent,rgba(0,0,0,0.3), black);
@@ -201,3 +208,24 @@ cover-flow{
     mask-position: center;
     webkit-mask-position: center;
 }
+
+    a:link {
+        color: green;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:visited {
+        color: grey;
+        background-color: transparent;
+        text-decoration: none;
+      }
+      a:hover {
+        color: black;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+      a:active {
+        color: yellow;
+        background-color: transparent;
+        text-decoration: underline;
+      }
