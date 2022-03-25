@@ -30,43 +30,46 @@ namespace template_csharp_album_collections.Controllers
         }
 
         [HttpPost]
-        public bool Post(Artist artist)
+        public IEnumerable<Artist> Post(Artist artist)
         {
             try
             {
                 _context.Artists.Add(artist);
                 _context.SaveChanges();
-                return true;
+                return _context.Artists.ToList();
             }
 
             catch (Exception e)
             {
                 //error handling
-                return false;
+                return _context.Artists.ToList();
             }
         }
 
         [HttpPut]
-        public bool Put(Artist artist)
+        public Artist Put(Artist artist)
         {
+            artist.Albums = _context.Artists.Find(artist.Id).Albums;
             try
             {
                 _context.Update(artist);
                 _context.SaveChanges();
-                return true;
+                return artist;
             }
             catch (Exception e)
             {
-                return false;
+                return artist;
             }
         }
 
         [HttpDelete]
-        public void Delete(int id)
+        public IEnumerable<Artist> Delete(int id)
         {
             var artistToDelete = _context.Artists.Find(id);
             _context.Artists.Remove(artistToDelete);
             _context.SaveChanges();
+
+            return _context.Artists.ToList();
         }
     }
 }
