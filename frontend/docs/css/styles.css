@@ -612,9 +612,23 @@ cover-flow{
         
     }
 
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px; 
+        padding-top: 50px;
+        margin-right: 100px;
+      }
 
     a:link {
+        line-height: 100px;
+        height: 100px;
+        border: 3px solid green;
+        text-align: left;
         color: green;
+        font-size: 28px;
         background-color: transparent;
         text-decoration: none;
       }
