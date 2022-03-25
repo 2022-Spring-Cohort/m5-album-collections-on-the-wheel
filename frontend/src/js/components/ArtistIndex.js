@@ -17,43 +17,77 @@ export function GetArtists() {
 function Index(artists){
     //return "<div>test</div>";
     appDiv.innerHTML = `
-        <button id="AddArtistBtn">Add an Artist</button>
+    <div id="artist-container">
+        <section class="artistIndex">
+            
 
-        <div>
-            ${artists.map(artist =>{
-                return `
-                    <section id="${artist.id}" class="singleArtist">
-                        <ul class="artistItem">
-                            <li>${artist.name}</li>
-                            <img src="${artist.heroImage}">
-                        </ul>
-                        <button class="deleteArtistBtn">Delete Artist</button>
-                        
-                    </section>
-                `;
-            }).join('')}
-        </div>
+            <div>
+                <section class="addArtistSign">
+                  
+               
+                    <div class="addArtist">
+                        <img id="AddArtistBtn" src="https://th.bing.com/th/id/R.4322fbefdf38880b4deaa6194d2cf766?rik=Ur7CikGkX7MuSA&riu=http%3a%2f%2fwww.langlo.no%2fsite%2ficons%2flanglo-symboler-21.png&ehk=xEHgkecbFrZGB80ai4k35nN7zcJcqDrQBkkh94zaLZI%3d&risl=&pid=ImgRaw&r=0"> 
+                    </div>
+                    <p>Add an Artist</p>
+                              
+                </section>
+                ${artists.map(artist =>{
+                    return `
+                        <section id="${artist.id}" class="singleArtist">
+
+                            <i class="fa-solid fa-xmark deleteArtistBtn"></i>
+                            
+                            <div class="artistItem">
+                                <div>
+                                    <img src="${artist.heroImage}">
+                                </div>
+                                <li>${artist.name}</li>
+                            </div>
+                            
+                            
+                        </section>
+                    `;
+                }).join('')}
+            </div>
+        </section>
+    </div>
     `;
     SetupEventListeners();
 }
 
+/* <button class="deleteArtistBtn">Delete Artist</button> */
+/* <button id="AddArtistBtn">Add an Artist</button> */
+
 function SetupEventListeners(){
     let artists = document.getElementsByClassName('singleArtist');
+    
+
+
 
     Array.from(artists).forEach(artist => {
         let artistItem = artist.getElementsByClassName('artistItem')[0];
         let deleteArtistBtn = artist.getElementsByClassName('deleteArtistBtn')[0];
         let artistId = artist.id;
 
+        artist.addEventListener('mouseover',function(){
+            deleteArtistBtn.style.opacity = "1";
+        });
+        artist.addEventListener('mouseout',function(){
+            deleteArtistBtn.style.opacity = "0";
+        });
+
         artistItem.addEventListener('click',function(){            
             Artist.GetArtist(artistId);
             console.log(artistId);
         });
 
-        deleteArtistBtn.addEventListener('click',function(){
-            DeleteArtist(artistId);
-            console.log(artistId);
-        });
+        if (deleteArtistBtn.style.opacity === 1) {
+            deleteArtistBtn.addEventListener('click',function(){
+                DeleteArtist(artistId);
+                console.log(artistId);
+            });
+        }
+        
     });  
 
     let addArtistBtn = document.getElementById('AddArtistBtn');
@@ -70,7 +104,9 @@ function SetupEventListeners(){
 function AddArtist(){
     
     appDiv.innerHTML = `
-        <h2>Add Artist</h2>
+    
+    <div id="artist-container">
+    <h2>Add Artist</h2>
         <section class="form">
             <input type="text" id="artistName" placeholder="Name">
             <input type="text" id="artistGenre" placeholder="Genre">
@@ -79,6 +115,7 @@ function AddArtist(){
 
             <button id="saveArtistBtn" type="submit">Save</button>
         </section>
+    </div>
     `;
    
 

@@ -2,6 +2,7 @@ import { GetArtists } from "./ArtistIndex";
 import albumActions from "./albumActions"
 
 
+
 const contentDiv = document.getElementById("app");
 
 export default {
@@ -12,50 +13,40 @@ export default {
 
 function SetupNavBar(){
     return `
-        <div class="nav-item" id="nav-artists">
-            <div class="nav-icon-container">
-                <img class="nav-icon" src="./static/artist-icon.svg"/>
-            </div>
-            <div class="nav-icon-label">
-                Artists
-            </div>
-        </div>
-        <div class="nav-item" id="nav-albums">
-            <div class="nav-icon-container">
-                <img class="nav-icon" src="./static/album-icon.svg"/>
-            </div>
-            <div class="nav-icon-label">
-                Albums
-            </div>
-        </div>
-        <div class="nav-item" id="nav-songs">
-            <div class="nav-icon-container">
-                <img class="nav-icon" src="./static/song-icon.svg"/>
-            </div>
-            <div class="nav-icon-label">
-                Songs
-            </div>
-        </div>
-        <div class="nav-item" id="nav-artists">
-            <div class="nav-icon-container">
-                <img class="nav-icon" src="./static/review-icon.svg"/>
-            </div>
-            <div class="nav-icon-label">
-                Reviews
-            </div>
-        </div>
+        <div class="header"></div>
+        
+        <ul>
+            <li id='navArtist'>Artist</li>
+            <li id='navAlbums'>Albums</li>
+        </ul>
+        
     `;
 }
 
 
 function SetupEventListeners(){
-    let navArtist = document.getElementById('nav-artists');
-    let navAlbums = document.getElementById('nav-albums');
+    let navArtist = document.getElementById('navArtist');
+    let navAlbums = document.getElementById('navAlbums');
+
+    let clickMark = undefined;
+    
     navAlbums.addEventListener('click', function(){
-        albumActions.GetAlbums();    
+        clickMark = "artist";
+        albumActions.GetAlbums(); 
+        if (clickMark != "album") {
+            navAlbums.style.borderBottom = "2px solid black"; 
+            navAlbums.style.width = "max-content";
+            navArtist.style.borderBottom = "none"; 
+        }   
     });
     navArtist.addEventListener('click', function(){   
-        GetArtists();
-        
+        clickMark = "album";
+        GetArtists();   
+        if (clickMark != "artist") {
+            navArtist.style.borderBottom = "2px solid black"; 
+            navArtist.style.width = "max-content";
+            navAlbums.style.borderBottom = "none"; 
+        }    
     });
+
 }

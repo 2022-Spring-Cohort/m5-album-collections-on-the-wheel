@@ -18,26 +18,39 @@ function Process(artist){
     }
 
     appDiv.innerHTML =`
-        <section>
-            <button id="updateArtistBtn">Edit Artist</button>
-            <p>${artist.name}</p>
-            <p>${artist.genre}</p>
-            <p>${artist.bio}</p>
-            <img src="${artist.heroImage}">
-          
-            <div>
-                ${artist.albums.map(album =>{
-                    return`
-                        <p>${album.title}</p>
-                        <img src="${album.image}">
-                    `
-                }).join('')}
-            </div>
-        
-        </section> 
+        <div class="artistDetail">
+            <section class="artistDetailTop" style="background-image:url(${artist.heroImage});">
+                <div>
+                    <span>${artist.name}</span>
+                    <button id="updateArtistBtn"></button>
+                </div> 
+            </section>
+
+            <section class="artistDetailBtm">
+                <article class="artistDetailBtmL">
+                    <p>${artist.genre}</p>
+                    <p>${artist.bio}</p>
+                </article>
+
+                <div class="artistDetailBtmR">
+                    ${artist.albums.map(album =>{
+                        return` 
+                            <div>  
+                                <div>
+                                    <img src="${album.image}">
+                                </div> 
+                                <p>${album.title}</p>
+                            </div> 
+                        `
+                    }).join('')}
+                </div>
+            </section>
+        </div> 
     `;
     AddEventListeners(artist);
 }
+
+
 
 function AddEventListeners(artist){
     let updateArtistBtn = document.getElementById('updateArtistBtn');

@@ -1,0 +1,563 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+body {
+    background-color: #f8f8f8;
+    color:black;
+    font-family: 'Prompt', sans-serif;
+    height:100vh;
+    width:100vw;
+    display:grid;
+    grid-template-columns: 16% 84%;
+    grid-template-rows: 90% 10%;
+    grid-template-areas: 
+    "nav main"
+    "nav footer";
+}
+
+header{
+    grid-area: nav;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:6vh;
+    border-right:.8px solid #cdcdcd;
+    min-width: 120px;
+}
+
+#navbar {
+    height:100%;
+    display:flex;
+    flex-direction: column;
+
+}
+
+.header {
+    margin-bottom:-100%;
+    width:4rem;
+    height:4rem;
+    background-image: url('./record1.png');
+    background-size: cover;
+    animation:spinningLogo 6s infinite linear;
+}
+
+#navbar ul{
+    list-style-type: none;
+    margin-top:44vh;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#navbar li{
+    padding-top:2rem;
+    cursor:default;
+}
+
+
+main {
+    grid-area: main;
+    min-width: 700px;
+    
+}
+
+#app {
+    
+}
+
+/* i can't have flex in mine so i wrapped your artist */
+#artist-container{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    grid-area: footer;
+  
+}
+
+h2 {
+    align-self: flex-start;
+    margin-top:4rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    text-align: center;
+    transform: translateX(-50%);
+}
+
+.form input{
+    outline: none;
+    border:none;
+    background-color: #f8f8f8;
+    color:black;
+    border-bottom:2px solid black;
+
+    margin-top:3rem;
+    width:200px;
+
+
+}
+
+#saveArtistBtn, #saveUpdateArtistBtn,.UpdateButton,.CreateButton {
+    outline: none;
+    margin-top:3.6rem;
+    border-radius:100px;
+    width:100px;
+    height:30px;
+    border:none;
+    background-color: black;
+    color:white;
+}
+
+.artistItem img {
+    width:auto;
+    height: 200px;
+    /* object-position: 50%; */
+}
+
+.artistIndex {
+    height:100%;
+ 
+    /* transform:translateY(-10%); */
+}
+
+.artistIndex>div {
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 250px;
+    row-gap: 1rem;
+    column-gap: 4rem;
+    padding:2rem 3rem;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.artistItem {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.artistItem div{
+    align-self: center;
+    justify-self: center;
+
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.52);
+    overflow:hidden;
+    width:180px;
+    height:180px;
+    border-radius:100% 100% 100% 100% / 100% 100% 100% 100%;
+    
+}
+
+.singleArtist {
+    display:flex;
+    flex-direction:column;
+    /* justify-content is for aligning items on the main axis */
+    align-items:center;
+}
+
+.artistItem>li {
+    list-style-type: none;
+    margin-top:.7rem;
+}
+
+
+.deleteArtistBtn {
+    opacity:0;
+    margin-bottom: .3rem;
+    align-self: flex-end;
+}
+
+
+
+.artistItem img:hover,.deleteArtistBtn {
+    cursor:pointer;
+    
+}
+
+.artistItem div:hover{
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.52);
+}
+
+
+
+#AddArtistBtn {
+    width:auto;
+    height: 180px;
+}
+
+
+.addArtistSign {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+} 
+
+.addArtistSign p {
+    margin-bottom:0;
+}
+.addArtistSign>span{
+    opacity:0;
+
+}
+
+.addArtist:hover {
+    cursor:pointer;
+}
+
+.artistDetail {
+    display:flex;
+    flex-direction:column;
+    height: 100%;
+    width:100%;
+
+}
+
+.artistDetailTop {
+    width:100%;
+    height:40%;
+    position:relative;
+    background-position: top right;
+    box-shadow: 0px 2px 4px 0px rgba(189,189,189,1);
+    
+    
+}
+
+.artistDetailTop::before{
+    content:' ';
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: #deddde4a;
+}
+
+
+.artistDetailTop>div{
+    width:100%;
+    position:absolute;
+    display: grid;
+    grid-template-columns: 95% 5%;
+    grid-template-rows: 1fr;
+    justify-content: flex-start;
+    align-items: baseline;
+    bottom:.1rem;
+}
+
+.artistDetailTop span{
+    margin-left: 2rem;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+#updateArtistBtn{ 
+    justify-self: flex-end;
+    margin-left:40%;
+    margin-right:2rem;
+    height:1.3rem;
+    width:1.3rem;
+    background-image: url('https://www.freeiconspng.com/uploads/edit-editor-pen-pencil-write-icon--4.png');
+    background-size:contain;
+    border:none;
+    background-color: transparent;
+
+}
+
+#updateArtistBtn:hover {
+    cursor: pointer;
+}
+
+
+
+.artistDetailBtm {
+    height:60%;
+    display: flex;
+    flex-direction: row;
+    padding-top:1rem;
+}
+
+.artistDetailBtmL {
+    padding-left:1rem;
+    width:35%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.artistDetailBtmL>p{
+    margin:.8rem 0 0 0;
+    padding-bottom: .8rem;
+    border-bottom: 1px solid #afadad;
+    width:80%;
+    letter-spacing: -.6px;
+}
+
+.artistDetailBtmL>p:first-child{
+    color:#a8a6a6;
+}
+
+.artistDetailBtmL>p:last-child{
+    border:none;
+}
+
+.artistDetailBtmR {
+    width:65%;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows:50% 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.artistDetailBtmR>div {
+    width:90%;
+    height:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  
+    
+}
+
+.artistDetailBtmR>div>div {
+    position:relative;
+    height:80%;
+    width:80%;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.artistDetailBtmR>div>div::before{
+    content:' ';
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: #eddabf33;
+}
+
+.artistDetailBtmR img {
+    width:110%;
+    height:auto;
+}
+
+.artistDetailBtmR>div>p{
+    font-size: .85rem;
+    margin-top:5px;
+}
+
+.artistDetailBtmR>div>p:hover {
+    border-bottom:1.4px solid #686464;
+    cursor:default;
+}
+
+@keyframes spinningLogo {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+
+@media only screen and (max-width: 860px) {
+    .artistIndex>div {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 220px;
+        row-gap: 1rem;
+        column-gap: 3rem;
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .artistDetailBtmR {
+        grid-template-columns: repeat(5,1fr);
+        grid-template-rows:50% 50%;
+
+    }
+  }
+
+  .parent {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50vh 1fr;
+    grid-template-rows: 50vh auto;
+    grid-template-areas:
+        "albumCover  albumDetails"
+        "albumSongs  albumReviews";
+}
+
+  .album-cover {
+    grid-area: albumCover;
+    background-color:black;
+}
+.album-details { 
+    grid-area: albumDetails;
+    padding-top: 5em;
+    padding-left: 5em;
+    background-color:black;
+    color:white;
+
+}
+.album-songs {
+    grid-area: albumSongs;
+}
+
+.song-list{
+    margin-top: 2em;
+    list-style-type: none;
+}
+
+.album-reviews {
+    grid-area: albumReviews;
+    margin-left: 5em;
+}
+
+.review {
+    padding-left: 5em;
+    border-bottom: 2px solid black;
+}
+
+.image-wrapper{
+    max-width: 100%;
+    max-height:100%;
+    overflow: hidden;
+}
+
+.album-image{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+
+}
+
+.detail-control{
+    color:grey;
+    font-weight: bolder;
+    font-size: 2vw;
+    /* text-shadow: 1px 10px 5px rgba(0,0,0,1.0); */
+    position:absolute;
+    top:100%;
+    left: 0;
+    width: 45vw;
+    margin-left: -100%;
+    height: auto;
+    text-align: center;
+    transition: color 0.3s ease-in,text-shadow 0.3s ease-in;
+    z-index: 2;
+    transform: rotateX(45deg) translateZ(45px);
+    text-shadow: '1px 20px 5px black';
+}
+
+.detail-control:hover{
+    color: white;
+    /* -webkit-text-stroke: black 2px; */
+}
+
+.fade{
+    color: rgba(0,0,0,0);
+    text-shadow: '1px 20px 5px rgba(0,0,0,0.0)';
+}
+
+.delete-control{
+    position:absolute;
+    top:0;
+    left: 100%;
+}
+
+.delete-control{
+    transition: display 0.3s ease-in;
+}
+
+.album::after{
+    content:"";
+    display:block;
+    background-image: inherit;
+    background-size:inherit;
+    height: 98%;
+    width: 100%;
+    position: absolute;
+    bottom: -102%;
+    transform:scaleY(-1);
+
+    mask-image: linear-gradient(transparent,rgba(0,0,0,0.3), black);
+    -webkit-mask-image: linear-gradient(transparent,rgba(0,0,0,0.3), black);
+    mask-mode: alpha;
+    webkit-mask-mode: alpha;
+    mask-repeat: no-repeat;
+    webkit-mask-repeat: no-repeat;
+    mask-size: 200px;
+    webkit-mask-size: 200px;
+    mask-position: center;
+    webkit-mask-position: center;
+}
+
+#create-control{
+    max-width:24vw;
+    position:absolute;
+    left:100%;
+    margin-left:-50%;
+    top:50%;
+    background-color:black;
+    border-radius: 50%;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height:100%;
+    gap:5em;
+    columns: row;
+    list-style: none;
+    text-decoration: none;
+    
+}
+
+
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:visited {
+    color: grey;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:hover {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+  }

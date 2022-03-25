@@ -1,6 +1,8 @@
 const contentDiv = document.getElementById("app");
 import requestHandler from "../../requestHandler";
 import { ALBUM_CONTROLLER } from "../constants";
+import { ARTIST_CONTROLLER } from "../constants";
+import populateSelect from "./populate-select";
 
 export default{
     GetAlbum,
@@ -16,23 +18,27 @@ function GetAlbum(id){
     // .catch(err => console.log(err))   
 }
 
-function Edit(Album){
+function Edit(album){
     console.log("works");
     contentDiv.innerHTML = `
 
     <h2>Album Detail </h2>
-    <input type="hidden" value="${Album.id}" id="EditId" />
-    <input type="hidden" value="${Album.artistId}" id="EditArtistId" />
+    <div id="artist-container">
+    <input type="hidden" value="${album.id}" id="EditId" />
+    <select id="edit-select">
+    </select>
 
     <section class="form">
-        <input id="EditTitle" placeholder="Title" value="${Album.title}" />
-        <input value="${Album.image}" placeholder="ImageUrl" id="EditImage" />
-        <input id="EditRecordLabel" placeholder="Record Label" value="${Album.recordLabel}"/>
-        <button id="${Album.id}" class="UpdateButton" >Update</button>
+        <input id="EditTitle" placeholder="Title" value="${album.title}" />
+        <input value="${album.image}" placeholder="ImageUrl" id="EditImage" />
+        <input id="EditRecordLabel" placeholder="Record Label" value="${album.recordLabel}"/>
+        <button id="${album.id}" class="UpdateButton" >Update</button>
     </section>
-    
+    </div">
     `;
-    //addEventListeners();
+    let select = document.getElementById('edit-select');
+    populateSelect.PopulateArtists(select);
+
     let UpdateButton = document.getElementsByClassName("UpdateButton")[0];
 
     UpdateButton.addEventListener('click', function(){
